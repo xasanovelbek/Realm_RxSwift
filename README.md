@@ -1,5 +1,5 @@
 # Realm_RxSwift
-This simple app was written to introduce basic operations of some frameworks
+This simple app was written to introduce basic operations of some frameworks. Such as "Realm" and "RxSwift". Also this app was written with MVVM pattern with Coordinators.
 
 
 # Coordinator
@@ -15,7 +15,7 @@ This simple app was written to introduce basic operations of some frameworks
           func showError(with msg: String)
       }
       
-### Here we are initialising our protocl.
+### Here we are initialising our protocol.
 
       class AppCoordinator: AppCoordinatorProtocol {
 
