@@ -4,32 +4,33 @@ This simple app was written to introduce basic operations of some frameworks
 
 # Coordinator
 
-  protocol AppCoordinatorProtocol {
-      var window: UIWindow { get }
-      var navigationController: UINavigationController { get }
+      protocol AppCoordinatorProtocol {
+          var window: UIWindow { get }
+          var navigationController: UINavigationController { get }
 
-      func start()
-      func startDatasVC(userModel: UserModel, editRelay: PublishRelay<UserModel?>?)
-      func showAddUserAlert(_ relay: PublishRelay<String?>)
-      func showError(with msg: String)
-  }
-  class AppCoordinator: AppCoordinatorProtocol {
-
-      var window: UIWindow
-      var navigationController: UINavigationController
-
-      init(window: UIWindow) {
-          self.window = window
-          self.navigationController = UINavigationController()
-          self.window.rootViewController = navigationController
+          func start()
+          func startDatasVC(userModel: UserModel, editRelay: PublishRelay<UserModel?>?)
+          func showAddUserAlert(_ relay: PublishRelay<String?>)
+          func showError(with msg: String)
       }
 
-      func start() {
-          self.window.makeKeyAndVisible()
-          let mainVC = MainVC.instantiate()
-          mainVC.appCoordinator = self
-          mainVC.mainViewModel = MainViewModel()
-          self.navigationController.setViewControllers([mainVC], animated: true)
+      class AppCoordinator: AppCoordinatorProtocol {
+
+          var window: UIWindow
+          var navigationController: UINavigationController
+
+          init(window: UIWindow) {
+              self.window = window
+              self.navigationController = UINavigationController()
+              self.window.rootViewController = navigationController
+          }
+
+          func start() {
+              self.window.makeKeyAndVisible()
+              let mainVC = MainVC.instantiate()
+              mainVC.appCoordinator = self
+              mainVC.mainViewModel = MainViewModel()
+              self.navigationController.setViewControllers([mainVC], animated: true)
+          }
+      ...
       }
-  ...
-  }
