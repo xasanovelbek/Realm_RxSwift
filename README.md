@@ -38,3 +38,40 @@ This simple app was written to introduce basic operations of some frameworks
       ...
       }
 
+
+
+# Realm(Create-Read-Update)
+
+### Create
+            let newUser = UserModel()
+            newUser.id = UUID().uuidString
+            newUser.username = username
+            newUser.selected = false
+
+            
+            do {
+                try db.write {
+                    self.db.add(newUser)
+                }
+            } catch {
+                //error
+            }
+            
+### Read(Fetching objects)
+      
+            if let usersResult = self.db?.objects(UserModel.self) {
+                let usersArray: [UserModel] = Array(usersResult)
+                print(usersArray)
+            } else {
+                //error
+            }
+      
+### Update
+
+            do {
+                try db.write {
+                    user.selected = !user.selected
+                }
+            } catch {
+                    //error    
+            }
