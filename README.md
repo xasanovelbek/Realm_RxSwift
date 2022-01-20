@@ -59,7 +59,7 @@ This simple app was written to introduce basic operations of some frameworks
             
 ### Read(Fetching objects)
       
-            if let usersResult = self.db?.objects(UserModel.self) {
+            if let usersResult = db.objects(UserModel.self) {
                 let usersArray: [UserModel] = Array(usersResult)
                 print(usersArray)
             } else {
@@ -75,3 +75,39 @@ This simple app was written to introduce basic operations of some frameworks
             } catch {
                     //error    
             }
+            
+            
+# RxSwift Traits   
+
+### Completable
+"Completable" is a type of RxSwift traits. "Completable" finishes with 2 functions. First is ".completed", second is ".error(YourError)". In real use-case, we can use this trait when we need only information about completion or error result. For example when uploading or inserting datas. In this app  I also used "Completable" trait in order to creating new UserModel:
+
+      func addUser(username: String) -> Completable {
+        return Completable.create { [weak self] observer in
+            let maybeError = RealmError(msg: "Realm add user error")
+            
+            guard let self = self else {
+                observer(.error(maybeError))
+                return Disposables.create()
+            }
+            
+            let newUser = UserModel()
+            newUser.id = UUID().uuidString
+            newUser.username = username
+            newUser.selected = false
+            
+            do {
+                try self.db?.write {
+                    self.db?.add(newUser)
+                    observer(.completed)
+                }
+            } catch {
+                observer(.error(maybeError))
+            }
+
+            return Disposables.create {
+                print("Disposable")
+            }
+        }
+    }
+
