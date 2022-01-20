@@ -134,6 +134,8 @@ Second trait type which I used in this application is "Single". In this trait yo
     
 ### Driver
 Third trait which I want to introduce is "Driver". This trait is to work with UI. Because this trait works on MainThread. For instance, I used this trait when user opens alert dialog in order to add user and clicks "save" button:
+
+      ...
       let alertRelay = PublishRelay<String?>()
       ...
       
