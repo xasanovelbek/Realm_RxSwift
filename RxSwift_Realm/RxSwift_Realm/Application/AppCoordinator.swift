@@ -5,11 +5,13 @@
 //  Created by Elbek Khasanov on 17/01/22.
 //
 
-
 import UIKit
 import RxRelay
 
 protocol AppCoordinatorProtocol {
+    var window: UIWindow { get }
+    var navigationController: UINavigationController { get }
+    
     func start()
     func startDatasVC(userModel: UserModel, editRelay: PublishRelay<UserModel?>?)
     func showAddUserAlert(_ relay: PublishRelay<String?>)
@@ -17,8 +19,8 @@ protocol AppCoordinatorProtocol {
 }
 class AppCoordinator: AppCoordinatorProtocol {
     
-    private let window: UIWindow
-    private let navigationController: UINavigationController
+    var window: UIWindow
+    var navigationController: UINavigationController
     
     init(window: UIWindow) {
         self.window = window
