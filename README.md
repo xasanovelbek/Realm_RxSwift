@@ -3,7 +3,7 @@ This simple app was written to introduce basic operations of some frameworks
 
 
 # Coordinator
-Here we are declaring our functions with protocol.
+## Here we are declaring our functions with protocol.
 
       protocol AppCoordinatorProtocol {
           var window: UIWindow { get }
