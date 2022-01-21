@@ -33,7 +33,7 @@ class DatasVC: UIViewController, Storyboardy {
             .tap
             .subscribe { [weak self] _ in
                 self?.addButton.pulse()
-                self?.clicked?.accept((self?.user))
+                self?.clicked?.accept(self?.user)
             }
             .disposed(by: bag)
     }
